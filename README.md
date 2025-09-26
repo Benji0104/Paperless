@@ -106,3 +106,13 @@ Crear vistas para:
 💡Tip:
 --Este flujo se puede expandir incluyendo PostgreSQL para producción y mensajes de error/mensajes de éxito que se envían desde backend al frontend.
 --También puedes indicar presigned URLs en el flujo de descarga para que los archivos se puedan bajar directamente desde S3.
+
+
+
+## Estructura típica de venv:
+
+Include/: contiene archivos de encabezado C/C++ si estás compilando extensiones nativas.
+Lib/: aquí se instalan todas las librerías de Python que usas en tu proyecto (por ejemplo, Django, requests, etc.).
+Scripts/ (en Windows) o bin/ (en Linux/macOS): contiene los ejecutables, como python.exe, pip.exe, y otros scripts.
+.gitignore: evita que el entorno virtual se suba a Git (buena práctica).
+pyvenv.cfg: archivo de configuración que indica que esta carpeta es un entorno virtual y qué versión de Python se está usando.

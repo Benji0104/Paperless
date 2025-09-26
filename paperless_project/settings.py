@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',  #app agregada
-    'accounts', #app agregada
+
+    'rest_framework',
+
+    'Docs',  #app de conversores de documentos
 
 ]
 
