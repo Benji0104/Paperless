@@ -21,7 +21,59 @@ EXPIRATION_TIME = 60 * 60 * 24 #es para limpiar dichas carpetas por tema espacio
 os.makedirs(UPLOAD_DIR, exist_ok=True) # esto verifica si ya existe la carpeta, si no lo crea
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+@api_view(['POST'])
+def PDF (request):
 
+    text = ""
+    
+    pdf_file = request.FILES.get('file') # obtener el archivo PDF del request
+   
+
+    #Primero generar nombre del archivo y luego guardar 
+    name_archivo = modify_filename(pdf_file.name, UPLOAD_DIR) #modificar el nombre del archivo si ya existe
+    pdf_path = os.path.join(UPLOAD_DIR, name_archivo) # ruta para guardar el archivo
+    
+    with open(pdf_path, 'wb+') as destination: #guardar el archivo subido
+        for chunk in pdf_file.chunks():
+            destination.write(chunk)
+    
+    try:
+        
+        reader = PdfReader(pdf_path)
+        metadatos = reader.metadata or {}
+        number_of_pages = len(reader.pages)
+        #portada = reader.pages[0]
+        page = reader.pages[0]
+        
+        for page in reader.pages:
+            text += page.extract_text()
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)
+    
+    return Response ({
+        "metadatos" : metadatos, 
+        #"portada" : portada,  
+        "nombre_archivo": name_archivo,
+        "number_of_pages": number_of_pages,
+        "text": text
+    }) 
+    
+
+#funcion para modificar el nombre del archivo
+#devuelve el nombre modificado
+
+def modify_filename(original_filename, suffix):
+    nombre, extension = os.path.splitext(original_filename)
+    contador = 1
+    nuevo_nombre = original_filename
+
+    while os.path.exists(os.path.join(suffix, nuevo_nombre)):
+        nuevo_nombre = f"{nombre} {contador}{extension}"
+        contador += 1
+
+    
+    return  nuevo_nombre
 
 """ 
 @api_view(['GET'])
