@@ -1,31 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
-import Component from './Component';
-import SubirArchivos from './SubirArchivos';
+import React, { useState } from "react";
 
-function App() {
+function SubirArchivos() {
+  const [archivo, setArchivo] = useState(null);
+
+  const manejarCambio = (e) => {
+    setArchivo(e.target.files[0]);
+  };
+
+  const manejarSubmit = (e) => {
+    e.preventDefault();
+    if (archivo) {
+      alert(`Archivo seleccionado: ${archivo.name}`);
+      // Aquí luego puedes hacer la subida con fetch o axios
+    } else {
+      alert("Por favor selecciona un archivo antes de enviar.");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hola react.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-        <Component />
-        <SubirArchivos />
-      
-      </header>
+    <div className="container mt-5">
+      <div className="card shadow-lg p-4 rounded-3">
+        <h3 className="text-center text-primary mb-4">Subir Archivo</h3>
+
+        <form onSubmit={manejarSubmit}>
+          {/* Input de archivo con estilo Bootstrap */}
+          <div className="mb-3">
+            <label htmlFor="formFile" className="form-label fw-bold">
+              Selecciona un archivo:
+            </label>
+            <input
+              className="form-control"
+              type="file"
+              id="formFile"
+              onChange={manejarCambio}
+            />
+          </div>
+
+          {/* Botón de subir */}
+          <div className="d-grid">
+            <button type="submit" className="btn btn-success">
+              Subir archivo
+            </button>
+          </div>
+        </form>
+
+        {/* Mostrar archivo seleccionado */}
+        {archivo && (
+          <div className="alert alert-info mt-3">
+            Archivo seleccionado: <strong>{archivo.name}</strong>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-export default App;
+export default SubirArchivos;
