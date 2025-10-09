@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Docs/', include('Docs.urls')),  #agregada para la app Docs
+    path('Docs/', include('Docs.urls')),
+    path('OneDrive/', include('OneDrive.urls')),  #agregada para la app Docs
 ]
