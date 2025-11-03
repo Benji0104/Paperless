@@ -1,0 +1,31 @@
+.inicio {
+  background-image: url('/fondo-inicio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.inicio-subheading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #f8f9fa;
+}
+
+.inicio-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
