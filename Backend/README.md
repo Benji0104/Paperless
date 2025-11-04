@@ -116,3 +116,11 @@ Lib/: aquí se instalan todas las librerías de Python que usas en tu proyecto (
 Scripts/ (en Windows) o bin/ (en Linux/macOS): contiene los ejecutables, como python.exe, pip.exe, y otros scripts.
 .gitignore: evita que el entorno virtual se suba a Git (buena práctica).
 pyvenv.cfg: archivo de configuración que indica que esta carpeta es un entorno virtual y qué versión de Python se está usando.
+
+### permisos
+estos permisos permites hacer crud completo a los archivos de la cuenta del usuario, esos son permisos 
+que sedeben pedir 
+![alt text](image.png)
+### instalacion importante para poder utilizar el ONEDRIVE
+se debe descaragar con esos comando por temas de ruta, asi en cuentra el paquete instalador.
+python -m pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib

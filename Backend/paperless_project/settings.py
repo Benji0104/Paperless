@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'Docs',  #app de conversores de documentos
+    'Docs', 
+    'OneDrive', #app de conversores de documentos
 
 ]
 
